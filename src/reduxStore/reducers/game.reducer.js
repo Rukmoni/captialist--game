@@ -1,4 +1,5 @@
 import actionTypes from '../actionTypes';
+import util from '../../clickerGame/utlis';
 
 
 const INIT_STATE={
@@ -7,8 +8,8 @@ const INIT_STATE={
   loading: false,
   error: null,
   totalCashAmount: 0,
-  ShopsList: {},
-  shopsConfig: {}
+  businesses: {},
+  businessesConfig: {}
 
 }
 
@@ -23,6 +24,11 @@ const businessGame=(state=INIT_STATE,action)=>{
         case actionTypes.INIT_GAME_ERROR:
       return { ...state, loading: false, error: action.payload };
 
+      // Buy Business
+    case actionTypes.BUY_BUSINESS_SUCCESS:
+        console.log("BUY_BUSINESS_SUCCESS")
+        return buyBusiness(state, action);
+        
      
             default:
                 return state;
@@ -37,8 +43,8 @@ function mapDBToState(state,action){
        error:null,
        loading:false,
        totalCashAmount: action.payload.gameState.totalCashAmount,
-       ShopsList: createShops(action.payload.gameState.businesses),
-       shopsConfig: action.payload.businessesConfig,
+       businesses: createShops(action.payload.gameState.businesses),
+       businessesConfig: action.payload.businessesConfig,
        showIdleDialog: action.payload.showIdleDialog,
        idleTime: action.payload.idleTime,
        idleRevenue: action.payload.idleRevenue
@@ -47,35 +53,101 @@ function mapDBToState(state,action){
 }
 
 /* ß */
-function createShops(ShopsListData){
-    let ShopsList={}
+function createShops(businessesData){
+    let businesses={}
    
-    ShopsListData.map((shop)=>{
-        return ShopsList[shop.shopkey]={
+    businessesData.map((shop)=>{
+        return businesses[shop.shopkey]={
             owner:true,
             level:shop.level,
-            manamger:shop.manager
+            manager:shop.manager
         }
     }); 
   
-return ShopsList;
+return businesses;
 
 }
-function buyShop(state,action){
-    console.log("shopKey",action.payload)
-    const shopPrice = state.shopsConfig[action.payload].initialCost;
+function buyBusiness(state, action) {
+    console.log(action.payload)
+    const businessPrice = state.businessesConfig[action.payload.businessKey].initialCost;
     const newState = { ...state };
   
-    if (newState.totalCashAmount >= shopPrice) {
-      newState.totalCashAmount = Math.round((newState.totalCashAmount - shopPrice) * 100) / 100;
-      newState.ShopsList[action.payload] = {
+    if (newState.totalCashAmount >= businessPrice) {
+      newState.totalCashAmount = Math.round((newState.totalCashAmount - businessPrice) * 100) / 100;
+      newState.businesses[action.payload.businessKey] = {
         owner: true,
         level: action.payload.level,
         managers: []
       }
   
-      newState.ShopsList[action.payload.shopkey] = { ...newState.ShopsList[action.payload.shopkey] };
-
+      newState.businesses[action.payload.businessKey] = { ...newState.businesses[action.payload.businessKey] };
     }
-    return { ...newState, ShopsList: { ...newState.ShopsList } };
-}
+  
+    return { ...newState, businesses: { ...newState.businesses } };
+  }
+  
+  function manageOrder(state, action) {
+    const newState = { ...state };
+    const businessKey = action.payload;
+    const business = newState.businesses[businessKey];
+  
+    business.processingOrder = true;
+    business.timer = newState.businessesConfig[businessKey].initialTime;
+  
+    newState.businesses[businessKey] = { ...business };
+  
+    return { ...newState, businesses: { ...newState.businesses } };
+  }
+  
+  function manageOrderTick(state, action) {
+    const newState = { ...state };
+    const businessKey = action.payload;
+    const business = newState.businesses[businessKey];
+    if (business.timer > 0) {
+      business.processingOrder = true;
+      business.timer = business.timer - 10;
+    } else if (!business.managers || business.managers.length === 0) {
+      business.timer = 0;
+      business.processingOrder = false;
+    } else {
+      business.processingOrder = true;
+      business.timer = newState.businessesConfig[businessKey].initialTime;
+    }
+  
+    newState.businesses[businessKey] = { ...business };
+  
+    return { ...newState, businesses: { ...newState.businesses } };
+  }
+  
+  function expandBusiness(state, action) {
+    const newState = { ...state };
+    const businessKey = action.payload.businessKey;
+    const business = newState.businesses[businessKey];
+    const rateGrowth = newState.businessesConfig[businessKey].coefficient;
+    const costBase = newState.businessesConfig[businessKey].initialCost;
+    const businessLevel = newState.businesses[businessKey] && business.level ? business.level : 1;
+    const cost = util.getNextExpandCost(costBase, businessLevel, rateGrowth);
+    
+    newState.totalCashAmount = Math.round((newState.totalCashAmount - cost) * 100) / 100;
+    business.level = action.payload.level;
+    newState.businesses[businessKey] = { ...business };
+  
+    return { ...newState, businesses: { ...newState.businesses } };
+  }
+  
+  function hireManager(state, action) {
+    const newState = { ...state };
+    const businessKey = action.payload.businessKey;
+    const business = newState.businesses[businessKey];
+  
+    business.manager = true;
+  
+    const cost = newState.businessesConfig[businessKey].managerPrice;
+  
+    newState.totalCashAmount = Math.round((newState.totalCashAmount - cost) * 100) / 100;
+  
+    newState.businesses[businessKey] = { ...business };
+  
+    return { ...newState, businesses: { ...newState.businesses } };
+  }
+  
