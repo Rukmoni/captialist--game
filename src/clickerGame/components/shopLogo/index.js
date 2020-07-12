@@ -7,15 +7,15 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Img from "../../assets";
 import { red, green } from "@material-ui/core/colors";
-import { buyBusiness } from '../../../reduxStore/actions/game.action';
+import { manageOrder } from '../../../reduxStore/actions/game.action';
 
 
 export default function ShopLogo({shopKey,img,initialCost}) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const onBuyShop = () => {
+  const onManageOrder = () => {
      
-    dispatch(buyBusiness(shopKey));
+    dispatch(manageOrder(shopKey));
   }
   return (
     <ButtonBase
@@ -23,7 +23,7 @@ export default function ShopLogo({shopKey,img,initialCost}) {
       key={"image.title"}
       className={classes.image}
       focusVisibleClassName={classes.focusVisible}
-      onClick={onBuyShop}
+      onClick={onManageOrder}
     >
         <img src={Img(img)} className={classes.imageSrc}/>
      

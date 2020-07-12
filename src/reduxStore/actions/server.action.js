@@ -8,7 +8,7 @@ const serverComands = {
   }
 
 export function buyBusiness(payload) {
-    console.log("BUY_BUSINESS ")
+    console.log("BUY_BUSINESS ",payload);
     return {
       command: serverComands.BUY_BUSINESS,
       message: payload

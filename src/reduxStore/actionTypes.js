@@ -17,8 +17,8 @@ const actionTypes={
 
    // Buy BUSINESS
    BUY_BUSINESS: '[BUSINESS] Buy BUSINESS',
-   BUY_BUSINESS_SUCCESS: '[Server] Buy BUSINESS Success',
-   BUY_BUSINESS_ERROR: '[Server] Buy BUSINESS Error',
+   BUY_BUSINESS_SUCCESS: '[Server] Buy Business Success',
+   BUY_BUSINESS_ERROR: '[Server] Buy Business Error',
  
    // Manage Order
    MANAGE_ORDER: '[BUSINESS] Manage Order',

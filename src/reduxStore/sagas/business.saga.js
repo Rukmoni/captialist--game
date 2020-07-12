@@ -45,7 +45,7 @@ function* hireManagerSuccessSaga() {
 // Manage Order
 function* manageOrder(action) {
   yield put({ type:actionTypes.WS_MESSAGE, payload: serverActions.manageOrder(action.payload) });
-  const businesses = yield select((state) => state.game.businesses);
+  const businesses = yield select((state) => state.businessGame.businesses);
   const business = businesses[action.payload];
   if (business && business.manager === true && !business.processingOrder) {
     yield put({ type:actionTypes.MANAGE_ORDER, payload: action.payload })
@@ -56,9 +56,9 @@ function* manageOrderSaga() {
   yield takeEvery(actionTypes.MANAGE_ORDER_FINISH, manageOrder);
 }
 
-export const getIsProcessing = (businessKey) => (state) => state.game.businesses[businessKey].processingOrder;
+export const getIsProcessing = (businessKey) => (state) => state.businessGame.businesses[businessKey].processingOrder;
 
-export const getBusinessTimer = (businessKey) => (state) => state.game.businesses[businessKey].timer;
+export const getBusinessTimer = (businessKey) => (state) => state.businessGame.businesses[businessKey].timer;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 function manageOrderDelay(businessKey) {
