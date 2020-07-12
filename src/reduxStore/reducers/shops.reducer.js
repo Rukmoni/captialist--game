@@ -1,5 +1,5 @@
 import actionTypes from '../actionTypes';
-import data from '../../serverDB/data.json';
+
 
 const INIT_STATE={
     showIdleDialog: false,
@@ -14,10 +14,15 @@ const INIT_STATE={
 
 const businessGame=(state=INIT_STATE,action)=>{
     switch(action.type){
-        case actionTypes.INIT_GAME: 
-            return mapInitData(state,action);
+        case actionTypes.INIT_GAME:
+            return {...state,loading:true,error:null}
+
         case actionTypes.INIT_GAME_SUCCESS:
-            return { ...state, loading: true, error: null };
+            return mapDBToState(state,action);
+
+        case actionTypes.INIT_GAME_ERROR:
+      return { ...state, loading: false, error: action.payload };
+
         case actionTypes.BUY_SHOP:
             return buyShop(state,action)
             default:
@@ -26,15 +31,23 @@ const businessGame=(state=INIT_STATE,action)=>{
 }
 export default businessGame;
 
-function mapInitData(state,action){
-    console.log("mapInitData",data.initState);
-    return {...state,
-        totalCashAmount: data.initState.totalCashAmount,
-        shopsConfig: data.shopsConfig,
-        ShopsList:createShops(data.initState.ShopsList)
+function mapDBToState(state,action){
+    console.log(action.payload.businessesConfig)
+    return {
+       ...state,
+       error:null,
+       loading:false,
+       totalCashAmount: action.payload.gameState.totalCashAmount,
+       ShopsList: createShops(action.payload.gameState.businesses),
+       shopsConfig: action.payload.businessesConfig,
+       showIdleDialog: action.payload.showIdleDialog,
+       idleTime: action.payload.idleTime,
+       idleRevenue: action.payload.idleRevenue
     }
 
 }
+
+/* ß */
 function createShops(ShopsListData){
     let ShopsList={}
    

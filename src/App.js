@@ -1,12 +1,15 @@
 import React,{useEffect} from 'react';
 
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import { initGame } from './reduxStore/actions/shops.action'
 import Game from './clickerGame';
 import './App.css';
+import { Loading } from './components/loader';
 
 function App() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.businessGame.loading);
+  const error = useSelector((state) => state.businessGame.error);
 
   useEffect(() => {
     console.log("useEffect")
@@ -15,12 +18,20 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+     
+        <div className="gameContainer">
+          
+     
         
-        <Game/>
-       
+        {
+          !loading && !error && <Game />
+        }
+        
+        {loading &&  <Loading/>}
+        
+        </div>
          
-      </header>
+      
     </div>
   );
 }

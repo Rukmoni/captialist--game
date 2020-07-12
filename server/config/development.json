@@ -3,13 +3,12 @@
     "host": "localhost",
     "port": 27017,
     "protocol": "mongodb://",
-    "database": "idle-capitalist"
+    "database": "adventure-capitalist"
   },
   "apiVersion": 1,
   "businesses": {
     "lemonade": {
       "title": "Limonade Stand",
-      "picture": "https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Ffac.2F2019.2F07.2F24.2F06205897-c0bf-4c8b-822e-29c5ca60acb0.2Ejpeg/748x372/quality/90/crop-from/center/limonade-maison-la-recette-traditionnelle-et-ses-variantes.jpeg",
       "managerPrice": 1000,
       "initialCost": 0,
       "initialRevenue": 1,
@@ -19,7 +18,6 @@
     },
     "newspaperDelivery": {
       "title": "Newspaper Delivery",
-      "picture": "http://www.boscoboysdistributors.com/img/content/service-5.jpg",
       "managerPrice": 15000,
       "initialCost": 60,
       "initialRevenue": 60,
@@ -30,7 +28,6 @@
     },
     "carWash": {
       "title": "Car Wash",
-      "picture": "https://www.chemicalguysuk.co.uk/wp-content/uploads/2019/01/CWS208_WatermelonSnowFoam_WebGraphics-800x400-4-2.jpg",
       "managerPrice": 100000,
       "initialCost": 720,
       "initialRevenue": 540,
@@ -40,7 +37,6 @@
     },
     "pizzaDelivery": {
       "title": "Pizza Delivery",
-      "picture": "https://www.excelenciasgourmet.com/sites/default/files/styles/slideshow_large/public/2017-12/PizzaNapolitana_1.jpg?itok=anhFCcO5",
       "managerPrice": 500000,
       "initialCost": 8640,
       "initialRevenue": 4320,
@@ -50,7 +46,6 @@
     },
     "donutShop": {
       "title": "Donut Shop",
-      "picture": "https://primavillahotel.com/images/landscape-1513893067-lead-jeff-e.jpg",
       "managerPrice": 1200000,
       "initialCost": 103680,
       "initialRevenue": 51840,
