@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Shop from './components/shop/index';
 
 const Game=()=> {
-  console.log("Game Loaded");
+
   const totalCashAmount = useSelector((state) => state.businessGame.totalCashAmount);
   const showIdleDialog = useSelector((state) => state.businessGame.showIdleDialog);
   const idleTime = useSelector((state) => state.businessGame.idleTime);

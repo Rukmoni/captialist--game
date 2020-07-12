@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { buyShop } from '../../../reduxStore/actions/shops.action';
+import { buyBusiness } from '../../../reduxStore/actions/game.action';
+
 import CurrencyFormat from "react-currency-format";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -16,7 +17,7 @@ export default function Shop(props) {
 
   const onBuyShop = () => {
       console.log("onBuy",shopKey)
-    dispatch(buyShop(shopKey));
+    dispatch(buyBusiness(shopKey));
   }
   return (<div className={classes.root}>
        <Button

@@ -1,10 +1,10 @@
 import React,{useEffect} from 'react';
 
 import {useDispatch,useSelector} from 'react-redux';
-import { initGame } from './reduxStore/actions/shops.action'
+import { initGame } from './reduxStore/actions/game.action'
 import Game from './clickerGame';
 import './App.css';
-import { Loading } from './components/loader';
+import { Loading } from './clickerGame/components/loader';
 
 function App() {
   const dispatch = useDispatch();

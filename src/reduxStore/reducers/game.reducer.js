@@ -23,8 +23,7 @@ const businessGame=(state=INIT_STATE,action)=>{
         case actionTypes.INIT_GAME_ERROR:
       return { ...state, loading: false, error: action.payload };
 
-        case actionTypes.BUY_SHOP:
-            return buyShop(state,action)
+     
             default:
                 return state;
     }
@@ -32,7 +31,7 @@ const businessGame=(state=INIT_STATE,action)=>{
 export default businessGame;
 
 function mapDBToState(state,action){
-    console.log(action.payload.businessesConfig)
+   
     return {
        ...state,
        error:null,

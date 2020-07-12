@@ -7,12 +7,13 @@ export function initGame(){
     }
 }
 
-export function buyShop(shopKey) {
-    return {
-      type: actionTypes.BUY_SHOP,
-      payload: shopKey
-    }
+export function buyBusiness(shopKey) {
+  return {
+    type: actionTypes.BUY_BUSINESS,
+    payload: shopKey
   }
+}
+
   
   export function manageOrder(shopKey) {
     return {
