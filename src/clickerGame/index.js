@@ -44,7 +44,7 @@ const Game=()=> {
         <Grid container spacing={1}>
        
        {Object.keys(shopsConfig).map((shopKey)=>
-        <Grid container item xs={12} spacing={1}>
+        <Grid container item xs={10} spacing={0}>
         <Shop
          key={shopKey}
          shopKey={shopKey}
@@ -53,6 +53,7 @@ const Game=()=> {
          initialCost={shopsConfig[shopKey].initialCost}
          managerPrice={shopsConfig[shopKey].managerPrice}
          owner={shopslist[shopKey]?.owner}
+         initialTime={shopsConfig[shopKey].initialTime}
         />
         </Grid>)}
 
