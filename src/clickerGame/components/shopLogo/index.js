@@ -10,7 +10,7 @@ import { red, green } from "@material-ui/core/colors";
 import { manageOrder } from '../../../reduxStore/actions/game.action';
 
 
-export default function ShopLogo({shopKey,img,initialCost}) {
+export default function ShopLogo({shopKey,img,initialCost,level}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const onManageOrder = () => {
@@ -32,7 +32,7 @@ export default function ShopLogo({shopKey,img,initialCost}) {
         
           className={classes.imageTitle}
         >
-           <CurrencyFormat value={initialCost} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+           {level?level:0}
         
         </Typography>
       </Paper>

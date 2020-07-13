@@ -26,6 +26,16 @@ const businessGame = (state = INIT_STATE, action) => {
     case actionTypes.BUY_BUSINESS_SUCCESS:
       console.log("BUY_BUSINESS_SUCCESS");
       return buyBusiness(state, action);
+
+    // Hire Manager
+    case actionTypes.HIRE_MANAGER_SUCCESS:
+      return hireManager(state, action);
+
+
+       // Expand Business
+    case actionTypes.EXPAND_BUSINESS_SUCCESS:
+      return expandBusiness(state, action)
+
       //Manage Order
     case actionTypes.MANAGE_ORDER:
       return manageOrder(state, action);

@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { buyBusiness } from "../../../reduxStore/actions/game.action";
 
 import CurrencyFormat from "react-currency-format";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Paper from '@material-ui/core/Paper';
+import Paper from "@material-ui/core/Paper";
 import { green } from "@material-ui/core/colors";
 import ShopLogo from "../shopLogo";
+
 import { Line } from "rc-progress";
+import utils from '../../utlis';
+import {ExpandButton, HireManagerButton} from "../actionButtons";
 
 export default function Shop(props) {
   const shopsConfig = useSelector(
@@ -16,24 +19,34 @@ export default function Shop(props) {
   );
   const shopsList = useSelector((state) => state.businessGame.businesses);
   const [percent, setpercent] = useState(0);
-  const [timer, settimer] = useState("00:00:00")
+  const [timer, settimer] = useState("00:00:00");
   const classes = useStyles();
   const dispatch = useDispatch();
   const shopKey = props.shopKey;
-  const img = props.img;
-  const title = props.title;
+
   const initialCost = props.initialCost;
   const managerPrice = props.managerPrice;
   const owner = props.owner;
   const ms = shopsList[shopKey]?.timer;
+  const manager=shopsList[shopKey]?.manager;
   const initialTime = shopsConfig[shopKey].initialTime;
+    const level=shopsList[shopKey]?.level;
 
   const onBuyShop = () => {
     dispatch(buyBusiness(shopKey));
   };
-  useEffect(() => {
-  
 
+  const calcNextExpandCost = () => {
+    const rateGrowth = shopsConfig[shopKey].coefficient;
+    const costBase = shopsConfig[shopKey].initialCost;
+    const businessLevel = shopsList[shopKey] && shopsList[shopKey].level ? shopsList[shopKey].level : 1;
+
+    return utils.getNextExpandCost(costBase, businessLevel, rateGrowth);
+  }
+  const onExpandBusiness=()=>{
+
+  } 
+  useEffect(() => {
     if (ms <= 0 || !ms) {
       setpercent(0);
       settimer("00:00:00");
@@ -44,89 +57,85 @@ export default function Shop(props) {
       setpercent(percent);
 
       let secNum = ms / 1000;
-    let hours = Math.floor(secNum / 3600);
-    let minutes = Math.floor((secNum - (hours * 3600)) / 60);
-    let seconds = secNum - (hours * 3600) - (minutes * 60);
+      let hours = Math.floor(secNum / 3600);
+      let minutes = Math.floor((secNum - hours * 3600) / 60);
+      let seconds = secNum - hours * 3600 - minutes * 60;
 
-    if (hours < 10) { hours = "0" + hours; }
-    if (minutes < 10) { minutes = "0" + minutes; }
-    if (seconds < 10) { seconds = "0" + seconds; }
+      if (hours < 10) {
+        hours = "0" + hours;
+      }
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
 
-    let timer=hours + ':' + minutes + ':' + seconds;
-settimer(timer);
-
+      let timer = hours + ":" + minutes + ":" + seconds;
+      settimer(timer);
     }
   }, [ms]);
-  
+  const buyShopButton = () => {
+    return (
+      <Button
+        variant="contained"
+        disableElevation
+        className={classes.buyShopButton}
+        onClick={onBuyShop}
+      >
+        Acquire This Shop{" "}
+        <span>
+          {" "}
+          <CurrencyFormat
+            value={initialCost}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={" $"}
+          />
+        </span>
+      </Button>
+    );
+  };
+
   return (
     <div className={classes.root}>
-     
-      {!props.owner && (
-        <Button
-          variant="contained"
-          size="medium"
-          color="primary"
-          disableElevation
-          className={classes.buyButton}
-          onClick={onBuyShop}
-        >
-          Acquire This Shop{" "}
-          <span>
-            {" "}
-            <CurrencyFormat
-              value={initialCost}
-              displayType={"text"}
-              thousandSeparator={true}
-              prefix={" $"}
-            />
-          </span>
-        </Button>
-      )}
-       <Paper className={classes.paper}>
-      <div style={{width:'100%',marginTop:'0px'}}>
-        {/*  ProgressLine */}
-        <Line
-          strokeWidth="3"
-          trailWidth={3}
-          strokeLinecap="square"
-          trailColor="gray"
-          strokeColor="yellowgreen"
-          percent={percent}
-        />
+      {!owner && buyShopButton()}
 
-        
-      </div>
-      <div style={{width:"100%",margin:'10px'}}>
-        <div style={{float:'left'}}>
-      <ShopLogo shopKey={shopKey} img={props.img} initialCost={initialCost} />
-      </div>
-      <span>
-      {timer}
-      <div style={{marginTop:'30px'}}>
-      <Button
-          variant="contained"
-         
-          color="primary"
-          disableElevation
-          
-          onClick={onBuyShop}
-        >
-          Buy
-          </Button>
-          <span> </span>
-          <Button
-          variant="contained"
-         
-          color="primary"
-          disableElevation
-          
-          onClick={onBuyShop}
-        >
-          Hire Manager
-          </Button>
+      <Paper className={props.owner ? classes.paper : classes.paperOwner}>
+        <div style={{ width: "100%", marginTop: "0px" }}>
+          {/*  ProgressLine */}
+          <Line
+            strokeWidth="3"
+            trailWidth={3}
+            strokeLinecap="square"
+            trailColor="gray"
+            strokeColor="yellowgreen"
+            percent={percent}
+          />
+        </div>
+        <div style={{ width: "100%" }}>
+          <div style={{ float: "left" }}>
+            <ShopLogo
+              shopKey={shopKey}
+              img={props.img}
+              initialCost={initialCost}
+              level={level}
+            />
           </div>
-          </span>
-      </div>
+          <div style={{ float: "left", marginLeft: "80px", marginTop: "20px" }}>
+            <div>{timer}</div>
+            <div>
+              <ExpandButton
+              shopKey={shopKey}
+              cost= {calcNextExpandCost()}
+              />
+            </div>
+          </div>
+          <div style={{ float: "right" }}>
+          <HireManagerButton shopKey={shopKey} managerPrice={managerPrice}/>
+           
+          </div>
+        </div>
       </Paper>
     </div>
   );
@@ -134,25 +143,28 @@ settimer(timer);
 const useStyles = makeStyles((theme) => ({
   root: {
     flex: 1,
-    margin: 30,
-    marginLeft:80,
-    width:300
   },
-  buyButton: {
-    width: 300,
+  buyShopButton: {
+    width: 550,
 
     backgroundColor: green[500],
     "&:hover": {
       backgroundColor: green[700],
     },
   },
+  hireButton: {
+    height: 90,
+  },
+  
   paper: {
-    width: 350,
-    height: 160,
+    width: 550,
+    height: 120,
+    opacity: 0.7,
   },
   paperOwner: {
-    width: 300,
-    height: 200,
+    width: 550,
+    height: 120,
+    opacity: 0.3,
   },
   paperDisabled: {
     width: 300,

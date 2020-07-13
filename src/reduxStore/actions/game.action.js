@@ -24,7 +24,7 @@ export function buyBusiness(shopKey) {
   
   export function expandBusiness(shopKey) {
     return {
-      type: actionTypes.EXPAND_SHOP,
+      type: actionTypes.EXPAND_BUSINESS,
       payload: shopKey
     }
   }

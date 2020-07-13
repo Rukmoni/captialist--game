@@ -18,21 +18,6 @@ const Game=()=> {
 
   const dispatch = useDispatch();
   const classes = useStyles();
-  const getGrid=()=>{
-      return(
-        <Grid container item xs={6} spacing={1}>
-        <Grid container item xs={12} spacing={1}>
-        <Paper className={classes.paper}>item</Paper>
-        </Grid>
-        <Grid container item xs={12} spacing={1}>
-        <Paper className={classes.paper}>item</Paper>
-        </Grid>
-        <Grid container item xs={12} spacing={1}>
-        <Paper className={classes.paper}>item</Paper>
-        </Grid>
-      </Grid>
-      )
-  }
 
  
   return(
@@ -41,10 +26,12 @@ const Game=()=> {
         <Paper className={classes.gameOuterPaper}>
   <Paper className={classes.paper}>{totalCashAmount}</Paper>
         <Paper className={classes.gameInnerPaper}>
-        <Grid container spacing={1}>
+        <Grid container spacing={3} direction="column"
+  >
        
        {Object.keys(shopsConfig).map((shopKey)=>
-        <Grid container item xs={10} spacing={0}>
+        <Grid item xs={6} sm={3}>
+          
         <Shop
          key={shopKey}
          shopKey={shopKey}
@@ -54,8 +41,11 @@ const Game=()=> {
          managerPrice={shopsConfig[shopKey].managerPrice}
          owner={shopslist[shopKey]?.owner}
          initialTime={shopsConfig[shopKey].initialTime}
-        />
-        </Grid>)}
+         totalCashAmount={totalCashAmount}
+        /> 
+        </Grid>
+        )}
+ 
 
      
      </Grid>
@@ -84,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     gameOuterPaper: {
         margin:15,
         width:700,
-        height:600,
+       height:1000,
       padding: 10,
       textAlign: 'center',
       alignContent:'center',
@@ -93,8 +83,8 @@ const useStyles = makeStyles((theme) => ({
     gameInnerPaper: {
       margin:80,
       marginTop:10,
-      width:540,
-      height:500,
+      width:550,
+      height:900,
     padding: 10,
     textAlign: 'center',
     backgroundColor: '#72685F',
