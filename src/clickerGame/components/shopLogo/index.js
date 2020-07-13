@@ -1,12 +1,10 @@
 import React from "react";
 import {useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import CurrencyFormat from "react-currency-format";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Img from "../../assets";
-import { red, green } from "@material-ui/core/colors";
 import { manageOrder } from '../../../reduxStore/actions/game.action';
 
 
@@ -18,25 +16,14 @@ export default function ShopLogo({shopKey,img,initialCost,level}) {
     dispatch(manageOrder(shopKey));
   }
   return (
-    <ButtonBase
-      focusRipple
-      key={"image.title"}
-      className={classes.image}
-      focusVisibleClassName={classes.focusVisible}
-      onClick={onManageOrder}
-    >
-        <img src={Img(img)} className={classes.imageSrc}/>
-     
+    <ButtonBase focusRipple key={"image.title"} className={classes.image}
+      onClick={onManageOrder}>
+      <img src={Img(img)} className={classes.imageSrc} alt={"logo"}/>
       <Paper variant="outlined" className={classes.buyInfoPaper} >
-        <Typography
-        
-          className={classes.imageTitle}
-        >
+        <Typography className={classes.imageTitle}>
            {level?level:0}
-        
         </Typography>
       </Paper>
-      
     </ButtonBase>
   );
 }

@@ -23,12 +23,11 @@ export default function Shop(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const shopKey = props.shopKey;
-
   const initialCost = props.initialCost;
   const managerPrice = props.managerPrice;
   const owner = props.owner;
   const ms = shopsList[shopKey]?.timer;
-  const manager=shopsList[shopKey]?.manager;
+  
   const initialTime = shopsConfig[shopKey].initialTime;
     const level=shopsList[shopKey]?.level;
 
@@ -43,9 +42,7 @@ export default function Shop(props) {
 
     return utils.getNextExpandCost(costBase, businessLevel, rateGrowth);
   }
-  const onExpandBusiness=()=>{
-
-  } 
+ 
   useEffect(() => {
     if (ms <= 0 || !ms) {
       setpercent(0);
@@ -56,25 +53,9 @@ export default function Shop(props) {
       const percent = Math.round((timeLeft * 100) / initialTime);
       setpercent(percent);
 
-      let secNum = ms / 1000;
-      let hours = Math.floor(secNum / 3600);
-      let minutes = Math.floor((secNum - hours * 3600) / 60);
-      let seconds = secNum - hours * 3600 - minutes * 60;
-
-      if (hours < 10) {
-        hours = "0" + hours;
-      }
-      if (minutes < 10) {
-        minutes = "0" + minutes;
-      }
-      if (seconds < 10) {
-        seconds = "0" + seconds;
-      }
-
-      let timer = hours + ":" + minutes + ":" + seconds;
-      settimer(timer);
+      settimer(utils.msToHMS(ms));
     }
-  }, [ms]);
+  },[ms,initialTime]);
   const buyShopButton = () => {
     return (
       <Button
@@ -104,31 +85,16 @@ export default function Shop(props) {
       <Paper className={props.owner ? classes.paper : classes.paperOwner}>
         <div style={{ width: "100%", marginTop: "0px" }}>
           {/*  ProgressLine */}
-          <Line
-            strokeWidth="3"
-            trailWidth={3}
-            strokeLinecap="square"
-            trailColor="gray"
-            strokeColor="yellowgreen"
-            percent={percent}
-          />
+          <Line strokeWidth="3" trailWidth={3} strokeLinecap="square" trailColor="gray" strokeColor="yellowgreen" percent={percent}/>
         </div>
         <div style={{ width: "100%" }}>
           <div style={{ float: "left" }}>
-            <ShopLogo
-              shopKey={shopKey}
-              img={props.img}
-              initialCost={initialCost}
-              level={level}
-            />
+            <ShopLogo  shopKey={shopKey} img={props.img} initialCost={initialCost} level={level}/>
           </div>
           <div style={{ float: "left", marginLeft: "80px", marginTop: "20px" }}>
             <div>{timer}</div>
             <div>
-              <ExpandButton
-              shopKey={shopKey}
-              cost= {calcNextExpandCost()}
-              />
+              <ExpandButton shopKey={shopKey} cost= {calcNextExpandCost()}/>
             </div>
           </div>
           <div style={{ float: "right" }}>

@@ -19,6 +19,8 @@ function Img(imgName){
             return donut;
         case "Shrimp":
             return donut;
+       default:
+           return lemon;
     }
 }
 export default Img;
