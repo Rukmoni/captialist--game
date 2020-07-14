@@ -20,11 +20,14 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 - [GameLogic](#gamelogic)
 
 ## Install & Build
+# clone
+`git@github.com:Rukmoni/captialist--game.git`
+
 
 # server
 Sever files available along with repo under server folder
 
-Access  : `cd server`
+Access  : `cd captialist--game/server`
 
 Install : `npm install`
 
@@ -33,11 +36,13 @@ Run Client :`npm start`
 
 # client 
 
+Access  : `cd captialist--game`
+
 Install : `npm install`
 
 Run Client :`npm start`
 
-## HowToPlay
+# HowToPlay
 
 Step 1: First Acquire less value business(lemonade)
 <p align="center">
