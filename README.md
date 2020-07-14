@@ -13,6 +13,7 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 
 ## Table of Contents
 - [Install & Build](#install--build)
+- [Architecture](#architecture)
 - [Stats-Client](#stats-client)
 - [Stats-Server](#stats-server)
 - [Linting](#linting)
@@ -20,10 +21,13 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 
 ## Install & Build
 
+# clone
+`git@github.com:Rukmoni/captialist--game.git`
+
 # server
 Sever files available along with repo under server folder
 
-Access  : `cd server`
+Access  : `cd captialist--game/server`
 
 Install : `npm install`
 
@@ -32,9 +36,15 @@ Run Client :`npm start`
 
 # client 
 
+Access : `captialist--game`
+
 Install : `npm install`
 
 Run Client :`npm start`
+
+## Architecture
+
+
 
 ## Stats-Client
 
