@@ -17,8 +17,7 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 - [Architecture](#architecture)
 - [Stats-Client](#stats-client)
 - [Stats-Server](#stats-server)
-
-- [Demo & Release Notes](#release-notes)
+- [GameLogic](#gamelogic)
 
 ## Install & Build
 
@@ -73,6 +72,9 @@ Simplified version of CQRS Pattern used on this Game Architecture. Client - Serv
 - Mongoose
 - Ws 
 
+##GameLogic
+
+This Game Logic developed according to https://blog.kongregate.com/the-math-of-idle-games-part-i/
 
 
 
