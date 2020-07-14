@@ -1,7 +1,7 @@
 # Adventure-capitalist Game Client+server
 Adventure Capitalist - the game you play while playing other, better games!
 <p align="center">
-  <img src="screenshots/screenshot.png?raw=true" />
+  <img src="screenshots/screenshot.jpg?raw=true" />
 </p>
 
 ## About Game
