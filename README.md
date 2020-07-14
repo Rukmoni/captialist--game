@@ -44,6 +44,9 @@ Run Client :`npm start`
 
 ## Architecture
 
+<p align="center">
+  <img src="screenshots/workflow.jpg?raw=true" />
+</p>
 
 
 ## Stats-Client
