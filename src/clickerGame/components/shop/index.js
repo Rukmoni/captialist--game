@@ -125,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: 550,
     height: 120,
-    opacity: 0.7,
+    opacity: 0.9,
   },
   paperOwner: {
     width: 550,

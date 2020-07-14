@@ -1,4 +1,10 @@
-// Maths
+import config from "../../config";
+import axios from 'axios';
+
+export async function fetchInit() {
+  return await axios.get(config.serverUrl + '/api/v1/game/initialGameState', {});
+}
+
 function msToHMS(ms){
   let secNum = ms / 1000;
   let hours = Math.floor(secNum / 3600);

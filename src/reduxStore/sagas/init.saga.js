@@ -1,5 +1,5 @@
 import { put, takeEvery, call } from 'redux-saga/effects'
-import { fetchInit } from "./fetchApiService";
+import { fetchInit } from "../../clickerGame/utlis";
 
 import actionTypes from '../actionTypes';
 
