@@ -1,0 +1,9 @@
+.shop-container {
+    display: flex;
+    width: 280px;
+    height: 200px;
+    flex-flow: column wrap;
+   
+  }
+
+  

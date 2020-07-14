@@ -39,6 +39,11 @@ Run Client :`npm start`
 
 ## Architecture
 
+Simplified version of CQRS Pattern used on this Game Architecture. Client - Server communications done through websocket.below flow diagram explains client-server architecture.  
+
+<p align="center">
+  <img src="screenshots/workflow.jpg?raw=true" />
+</p>
 
 
 ## Stats-Client

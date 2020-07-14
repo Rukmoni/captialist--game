@@ -38,6 +38,7 @@ export const HireManagerButton=({shopKey,managerPrice})=>{
     dispatch(hireManager(shopKey));
   }
   return (
+    <div >
     <Button
     variant="contained"
     color="primary"
@@ -50,6 +51,7 @@ export const HireManagerButton=({shopKey,managerPrice})=>{
           <CurrencyFormat value={managerPrice} displayType={'text'} thousandSeparator={true} prefix={'$'} />
           </Typography>
           </Button>
+          </div>
 )
 
 }
@@ -57,10 +59,12 @@ export const HireManagerButton=({shopKey,managerPrice})=>{
 const useStyles = makeStyles((theme) => ({
 
     expandButton: {
-        width: 170,
+        top:5,
+        width: 120,
       },
       hireButton: {
-        width:150,
-        height: 90,
+        marginTop:"10px",
+        width:120,
+        
       },
 }))

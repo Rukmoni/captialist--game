@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {Paper,Grid} from "@material-ui/core";
 import DashBoard from './components/dashBoard';
 import Shop from "./components/shop/index";
+import './gameStyle.css';
 
 
 const Game = () => {
@@ -17,9 +18,9 @@ const Game = () => {
       <Paper className={classes.gameOuterPaper}>
       <DashBoard totalCashAmount={totalCashAmount}/>
         <Paper className={classes.gameInnerPaper}>
-          <Grid container spacing={3} direction="column">
+        <div className="flex-container">
             {Object.keys(shopsConfig).map((shopKey) => (
-              <Grid item xs={6} sm={3}>
+              <div>
                 <Shop
                   key={shopKey}
                   shopKey={shopKey}
@@ -31,9 +32,9 @@ const Game = () => {
                   initialTime={shopsConfig[shopKey].initialTime}
                   totalCashAmount={totalCashAmount}
                 />
-              </Grid>
+              </div>
             ))}
-          </Grid>
+          </div>
         </Paper>
       </Paper>
     </div>
@@ -56,17 +57,17 @@ const useStyles = makeStyles((theme) => ({
     margin: 15,
     width: 700,
     height: 1000,
-    padding: 10,
+   
     textAlign: "center",
     alignContent: "center",
     backgroundColor: "#564D46",
   },
   gameInnerPaper: {
-    margin: 80,
+    margin: 50,
     marginTop: 10,
-    width: 550,
+    width: 600,
     height: 900,
-    padding: 10,
+   
     textAlign: "center",
     backgroundColor: "#72685F",
   },

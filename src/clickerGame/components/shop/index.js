@@ -4,14 +4,15 @@ import { buyBusiness } from "../../../reduxStore/actions/game.action";
 
 import CurrencyFormat from "react-currency-format";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
+import {Button,Paper,Typography} from "@material-ui/core";
+
 import { green } from "@material-ui/core/colors";
 import ShopLogo from "../shopLogo";
 
 import { Line } from "rc-progress";
 import utils from '../../utlis';
 import {ExpandButton, HireManagerButton} from "../actionButtons";
+import './shopStyle.css'
 
 export default function Shop(props) {
   const shopsConfig = useSelector(
@@ -79,28 +80,27 @@ export default function Shop(props) {
   };
 
   return (
-    <div className={classes.root}>
-      {!owner && buyShopButton()}
-
+    <div className="shop-container">
+     
+     {!owner && buyShopButton()}
       <Paper className={props.owner ? classes.paper : classes.paperOwner}>
-        <div style={{ width: "100%", marginTop: "0px" }}>
+      
+        <div style={{position:'relative',marginTop:'-30px'}}>
           {/*  ProgressLine */}
-          <Line strokeWidth="3" trailWidth={3} strokeLinecap="square" trailColor="gray" strokeColor="yellowgreen" percent={percent}/>
-        </div>
-        <div style={{ width: "100%" }}>
+          <Line strokeWidth="3" trailWidth={3} strokeLinecap="square" trailColor="gray" strokeColor="yellowgreen" percent={percent} style={{top:'0px'}} />
+          </div>
+        <div style={{height:"100px"}}>
           <div style={{ float: "left" }}>
             <ShopLogo  shopKey={shopKey} img={props.img} initialCost={initialCost} level={level}/>
           </div>
-          <div style={{ float: "left", marginLeft: "80px", marginTop: "20px" }}>
-            <div>{timer}</div>
-            <div>
+         
+          <Typography> {timer} </Typography>
+            
               <ExpandButton shopKey={shopKey} cost= {calcNextExpandCost()}/>
-            </div>
-          </div>
-          <div style={{ float: "right" }}>
-          <HireManagerButton shopKey={shopKey} managerPrice={managerPrice}/>
-           
-          </div>
+              <HireManagerButton shopKey={shopKey} managerPrice={managerPrice} style={{marginTop:'10px'}}/>
+            
+        
+        
         </div>
       </Paper>
     </div>
@@ -109,10 +109,12 @@ export default function Shop(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flex: 1,
+    
   },
   buyShopButton: {
-    width: 550,
-
+    position: "absolute",
+    width: 260,
+    zIndex: 1,
     backgroundColor: green[500],
     "&:hover": {
       backgroundColor: green[700],
@@ -123,13 +125,13 @@ const useStyles = makeStyles((theme) => ({
   },
   
   paper: {
-    width: 550,
-    height: 120,
+    width: 280,
+    height: 180,
     opacity: 0.9,
   },
   paperOwner: {
-    width: 550,
-    height: 120,
+    width: 280,
+    height: 180,
     opacity: 0.3,
   },
   paperDisabled: {
@@ -137,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
     height: 200,
   },
   image: {
-    position: "relative",
+    position: "absolute",
     width: 100,
     height: 100,
     [theme.breakpoints.down("xs")]: {
