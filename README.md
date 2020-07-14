@@ -22,21 +22,28 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 
 # server
 Sever files available along with repo under server folder
+
 Access  : `cd server`
+
 Install : `npm install`
+
 Run Client :`npm start`
 
 
 # client 
+
 Install : `npm install`
+
 Run Client :`npm start`
 
 ## Stats-Client
+
 - React
 - Redux
 - Redux-saga
 
 ## Stats-Server
+
 - Nodejs
 - Express
 - Mongoose
