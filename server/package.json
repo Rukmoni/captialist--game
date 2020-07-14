@@ -7,22 +7,16 @@
     "start": "DEBUG=idle-capitalist-server:* node index.js",
     "start:dev": "standard --fix && DEBUG=idle-capitalist-server:* nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RSginer/idle-capitalist.git"
-  },
+ 
   "keywords": [
     "javascript",
     "videogame",
     "idle",
     "capitalist"
   ],
-  "author": "RSginer",
+  "author": "Rukmoni",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/RSginer/idle-capitalist/issues"
-  },
-  "homepage": "https://github.com/RSginer/idle-capitalist#readme",
+ 
   "devDependencies": {
     "nodemon": "^2.0.2",
     "standard": "^14.3.1"
