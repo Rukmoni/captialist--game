@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
 import { makeStyles } from "@material-ui/core/styles";
 import {Paper,Grid} from "@material-ui/core";
 import DashBoard from './components/dashBoard';
@@ -11,15 +10,12 @@ const Game = () => {
   const totalCashAmount = useSelector((state) => state.businessGame.totalCashAmount);
   const shopslist = useSelector((state) => state.businessGame.businesses);
   const shopsConfig = useSelector( (state) => state.businessGame.businessesConfig);
-
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper className={classes.gameOuterPaper}>
-    
       <DashBoard totalCashAmount={totalCashAmount}/>
-      
         <Paper className={classes.gameInnerPaper}>
           <Grid container spacing={3} direction="column">
             {Object.keys(shopsConfig).map((shopKey) => (
