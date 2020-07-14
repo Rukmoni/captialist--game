@@ -13,6 +13,7 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 ## Table of Contents
 
 - [Install & Build](#install--build)
+- [HowToPlay](#howtoplay)
 - [Architecture](#architecture)
 - [Stats-Client](#stats-client)
 - [Stats-Server](#stats-server)
@@ -36,6 +37,19 @@ Run Client :`npm start`
 Install : `npm install`
 
 Run Client :`npm start`
+
+## HowToPlay
+
+Step 1: First Acquire less value business(lemonade)
+<p align="center">
+  <img src="screenshots/step1.png?raw=true" />
+</p>
+Step 2: Start Earning business, by clicking icon(lemon)
+<p align="center">
+  <img src="screenshots/step2.png?raw=true" />
+</p>
+
+Note : Starting it may require few more clicks and tricks , once you start earning businesses , you can Rock it :)
 
 ## Architecture
 
