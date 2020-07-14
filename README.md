@@ -79,7 +79,7 @@ Simplified version of CQRS Pattern used on this Game Architecture. Client - Serv
 
 ## GameLogic
 
-This Game Logic developed according to https://blog.kongregate.com/the-math-of-idle-games-part-i/
+This Game Logic developed with reference of https://blog.kongregate.com/the-math-of-idle-games-part-i/
 
 
 
