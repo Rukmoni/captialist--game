@@ -16,8 +16,8 @@ And the best part is, AdVenture Capitalist can even play itself! Get your busine
 - [Architecture](#architecture)
 - [Stats-Client](#stats-client)
 - [Stats-Server](#stats-server)
-- [Linting](#linting)
-- [Demo & Release Notes](#release-notes)
+- [Game Logics](#Game Logics)
+
 
 ## Install & Build
 
@@ -44,6 +44,8 @@ Run Client :`npm start`
 
 ## Architecture
 
+Simplified version of CQRS Pattern used on this Game Architecture. Client - Server communications done through websocket.below flow diagram explains client-server architecture.  
+
 <p align="center">
   <img src="screenshots/workflow.jpg?raw=true" />
 </p>
@@ -60,4 +62,13 @@ Run Client :`npm start`
 - Nodejs
 - Express
 - Mongoose
-- Ws 
+- Ws( websocket)
+
+## Database
+
+MongoDB used as Database
+
+## Game Logics
+
+Game Logics developed base on existing Adventure-captialist Game
+Reference:https://blog.kongregate.com/the-math-of-idle-games-part-i/
