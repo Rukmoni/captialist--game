@@ -77,7 +77,7 @@ Simplified version of CQRS Pattern used on this Game Architecture. Client - Serv
 - Mongoose
 - Ws 
 
-##GameLogic
+## GameLogic
 
 This Game Logic developed according to https://blog.kongregate.com/the-math-of-idle-games-part-i/
 
